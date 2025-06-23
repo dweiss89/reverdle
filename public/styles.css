@@ -1,5 +1,16 @@
-body { font-family: sans-serif; text-align: center; margin: 0; padding: 0; }
-h1 { background: #333; color: white; margin: 0; padding: 1em 0; }
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#f5f7fa, #c3cfe2);
+}
+h1 {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: white;
+  margin: 0;
+  padding: 1em 0;
+}
 .grid { display: inline-block; margin: 1em auto; }
 .row { display: flex; justify-content: center; margin-bottom: 4px; }
 .cell { width: 40px; height: 40px; border: 1px solid #999; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; text-transform: uppercase; }
@@ -10,3 +21,9 @@ h1 { background: #333; color: white; margin: 0; padding: 1em 0; }
 #input-area input { width: 120px; padding: 0.5em; text-transform: uppercase; }
 #input-area button { padding: 0.5em; margin-left: 4px; }
 #message { margin-top: 1em; font-weight: bold; }
+.solution-row { margin: 0.25em auto; }
+.solution-row input { width: 120px; padding: 0.3em; text-transform: uppercase; }
+.delete-btn { margin-left: 4px; padding: 0.3em 0.5em; background: #f44336; color: white; border: none; cursor: pointer; }
+.delete-btn:hover { background: #d32f2f; }
+#add-row, #generate { padding: 0.5em 1em; margin-top: 0.5em; cursor: pointer; background: #6aa84f; color: white; border: none; }
+#add-row:hover, #generate:hover { background: #558b3f; }
