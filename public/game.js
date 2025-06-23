@@ -1,6 +1,7 @@
+const gridRows = [];
 function createGrid(patterns) {
   const grid = document.getElementById('grid');
-  patterns.forEach((pattern, rowIndex) => {
+  patterns.forEach(pattern => {
     const row = document.createElement('div');
     row.className = 'row';
     [...pattern].forEach(ch => {
@@ -9,6 +10,7 @@ function createGrid(patterns) {
       row.appendChild(cell);
     });
     grid.appendChild(row);
+    gridRows.push(row);
   });
 }
 
@@ -52,6 +54,14 @@ let currentRow = 0;
 let attempts = 6;
 
 function setupGame() {
+  if (!PUZZLE) {
+    document.getElementById('message').textContent = 'No puzzle data. Create one at create.html';
+    return;
+  }
+  if (!PUZZLE.patterns) {
+    PUZZLE.patterns = PUZZLE.solutions.map(sol => computePattern(sol, PUZZLE.answer));
+  }
+  document.getElementById('answer').textContent = 'Answer: ' + PUZZLE.answer.toUpperCase();
   createGrid(PUZZLE.patterns);
   showInput();
 }
@@ -87,18 +97,20 @@ function handleGuess(value) {
     alert('Word not in dictionary');
     return;
   }
-  const pattern = computePattern(guess, PUZZLE.answer);
+  const target = PUZZLE.solutions[currentRow];
+  const pattern = computePattern(guess, target);
   const guessRow = document.createElement('div');
   guessRow.className = 'row';
-  [...pattern].forEach(ch => {
+  [...pattern].forEach((ch, i) => {
     const cell = document.createElement('div');
     cell.className = 'cell ' + colorClass(ch);
-    cell.textContent = ch;
+    cell.textContent = guess[i];
     guessRow.appendChild(cell);
   });
   document.getElementById('grid').appendChild(guessRow);
   attempts--;
-  if (pattern === PUZZLE.patterns[currentRow]) {
+  if (guess === target) {
+    gridRows[currentRow].style.display = 'none';
     currentRow++;
     attempts = 6;
     showInput();

@@ -11,4 +11,4 @@ cd public
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000` in your browser.
+Then open `http://localhost:8000/create.html` to build a puzzle or `index.html` with a generated link to play.
